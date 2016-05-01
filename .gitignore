@@ -1,19 +1,29 @@
-# History files
-.Rhistory
-.Rapp.history
+#Introduction
 
-# Session Data files
-.RData
+The script Run_analysis.R performs the 5 steps described in the course project's definition.
 
-# Example code in package build process
-*-Ex.R
+first, in order to merge the data we start by reading all the data from files
+and assigning names for the columns imported above
+then create the final training set by merging yTrain, subjectTrain, and xTrain
+later we need to read in the test data and again assign column names to the test data imported
+After that we create the final test set by merging the xTest, yTest and subjectTest data
+We combine training and test data to create a final data set
+Create a vector for the column names from the finalData, which will be used to select the desired mean() & stddev() columns.
 
-# RStudio files
-.Rproj.user/
+Second, in order to extract only the measurements on the mean and standard deviation for each measurement
+we create a logical Vector that contains TRUE values for the ID, mean() & stddev() columns and FALSE for others
+we Subset the finalData table based on the logicalVector to keep only the desired columns.
 
-# produced vignettes
-vignettes/*.html
-vignettes/*.pdf
+Third, we Use descriptive activity names to name the activities in the data set by merging the finalData 
+set with the acitivityType table with the idea of including some descriptive activity names.
+then we Update the colNames vector to include the new column names after merge.
 
-# OAuth2 token, see https://github.com/hadley/httr/releases/tag/v0.3
-.httr-oauth
+Fourth, we need to put appropriate labels on the data set with descriptive activity names.
+to cleaning up the variable names
+and to reasses the new descriptive column names to the finalData set.
+
+finally, we create a second, independent tidy data set with the average of each variable for each activity and each subject.
+in the process we create a new table, finalDataNoActivityType without the activityType column
+we Summarize the finalDataNoActivityType table to include just the mean of each variable for each activity and each subject
+and to finish we merge the tidyData with activityType to include descriptive acitvity names before exporting the tidyData set.
+
